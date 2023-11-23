@@ -20,9 +20,7 @@ public class Patern2 : MonoBehaviour
             float bulletDirX = transform.position.x + Mathf.Sin(((angle + 180 * i) * Mathf.PI) / 180f);
             float bulletDirY = transform.position.y + Mathf.Cos(((angle + 180 * i) * Mathf.PI) / 180f);
             
-            //float bulletDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f);
-
-            Vector3 bulletMoveVector = new Vector3(bulletDirX, bulletDirY, 0f);
+            Vector3 bulletMoveVector = new Vector3(bulletDirX, bulletDirY, 0f);  //NEW VECTOR
             Vector2 bulletDir = (bulletMoveVector - transform.position).normalized;
 
             GameObject bullet = BulletPool.bulletPoolInstance.GetBullet();

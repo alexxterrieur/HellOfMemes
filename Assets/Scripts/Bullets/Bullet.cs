@@ -7,6 +7,8 @@ public class Bullet : MonoBehaviour
     private Vector2 moveDirection;
     private float moveSpeed;
 
+    public int damages;
+
     private void OnEnable()
     {
         Invoke("Destroy", 3f);
@@ -15,6 +17,7 @@ public class Bullet : MonoBehaviour
     private void Start()
     {
         moveSpeed = 5f;
+        damages = 1;
     }
 
     private void Update()
@@ -39,11 +42,12 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision != null)
+        if (collision != null)
         {
             if (collision.gameObject.tag == "Player")
             {
-                Debug.Log("igfuig");
+                collision.gameObject.GetComponent<PlayerLifeManager>().TakeDamages(damages);
+                gameObject.SetActive(false);                
             }
         }
     }
