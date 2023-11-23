@@ -46,7 +46,7 @@ public class Bullet : MonoBehaviour
         {
             if (collision.gameObject.tag == "Player")
             {
-                collision.gameObject.GetComponent<PlayerLifeManager>().TakeDamages(damages);
+                collision.gameObject.GetComponent<LifeManager>().TakeDamages(damages);
                 gameObject.SetActive(false);                
             }
         }

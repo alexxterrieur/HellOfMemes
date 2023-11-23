@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerLifeManager : MonoBehaviour
+public class LifeManager : MonoBehaviour
 {
-    public int life = 3;
-
+    public int life;
+    public int score;
+    
     public void TakeDamages(int damages)
     {
         life -= damages;
@@ -21,6 +22,7 @@ public class PlayerLifeManager : MonoBehaviour
         if(life <= 0)
         {
             Debug.Log("Player mort");
+
         }
     }
 }
