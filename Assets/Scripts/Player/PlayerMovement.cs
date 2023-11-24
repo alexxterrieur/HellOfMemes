@@ -17,12 +17,11 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        playerShoot = GetComponent<PlayerShoot>();
     }
 
     private void FixedUpdate()
     {
-        playerShoot = GetComponent<PlayerShoot>();
-
         rb.velocity = movementInput * speed;
     }
 
@@ -34,7 +33,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnFire(InputValue inputValue)
     {
         fireDirection = inputValue.Get<Vector2>();
-
-        playerShoot.Shoot();
+        playerShoot.Shoot(fireDirection);
     }
 }

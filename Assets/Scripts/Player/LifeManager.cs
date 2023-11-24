@@ -26,6 +26,7 @@ public class LifeManager : MonoBehaviour
             if(gameObject.name != "Player")
             {
                 scoreManager.playerScore += score;
+                Destroy(gameObject);
             }
             else
             {
