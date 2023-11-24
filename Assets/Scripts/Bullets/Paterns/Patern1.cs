@@ -7,7 +7,6 @@ public class Patern1 : MonoBehaviour
     [SerializeField] private int bulletAmount = 10;
     [SerializeField] private float startAngle = 90f, endAngle = 270f;
 
-    private Vector2 bulletMoveDirection;
     public float fireRate;
 
     private void Start()
@@ -28,7 +27,7 @@ public class Patern1 : MonoBehaviour
             Vector3 bulletMoveVector = new Vector3(bulletDirX, bulletDirY, 0f);
             Vector2 bulletDir = (bulletMoveVector - transform.position).normalized;
 
-            GameObject bullet = BulletPool.bulletPoolInstance.GetBullet();
+            GameObject bullet = BulletPool.bulletPoolInstance.GetEnnemiesBullet();
             bullet.transform.position = transform.position;
             bullet.transform.rotation = transform.rotation;
             bullet.SetActive(true);
