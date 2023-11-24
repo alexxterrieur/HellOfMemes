@@ -9,6 +9,12 @@ public class LifeManager : MonoBehaviour
     public int score;
     public ScoreManager scoreManager;
 
+    private void Start()
+    {
+        scoreManager = GameObject.FindWithTag("ScoreManager").GetComponent<ScoreManager>();
+        
+    }
+
     public void TakeDamages(int damages)
     {
         life -= damages;
