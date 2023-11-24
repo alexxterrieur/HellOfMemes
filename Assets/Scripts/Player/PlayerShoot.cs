@@ -2,24 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Patern1 : MonoBehaviour
+public class PlayerShoot : MonoBehaviour
 {
-    [SerializeField] private int bulletAmount = 10;
-    [SerializeField] private float startAngle = 90f, endAngle = 270f;
-
-    public float fireRate;
-
-    private void Start()
+    public void Shoot()
     {
-        InvokeRepeating("Fire", 0f, fireRate);
-    }
+        float angleStep = (10 - (-15)) / 3;
+        float angle = -10;
 
-    private void Fire()
-    {
-        float angleStep = (endAngle - startAngle) / bulletAmount;
-        float angle = startAngle;
-
-        for(int i = 0; i < bulletAmount; i++)
+        for (int i = 0; i < 3; i++)
         {
             float bulletDirX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f);
             float bulletDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f);
@@ -27,7 +17,7 @@ public class Patern1 : MonoBehaviour
             Vector3 bulletMoveVector = new Vector3(bulletDirX, bulletDirY, 0f);
             Vector2 bulletDir = (bulletMoveVector - transform.position).normalized;
 
-            GameObject bullet = BulletPool.bulletPoolInstance.GetEnnemiesBullet();
+            GameObject bullet = BulletPool.bulletPoolInstance.GetPlayerBullet();
             bullet.transform.position = transform.position;
             bullet.transform.rotation = transform.rotation;
             bullet.SetActive(true);

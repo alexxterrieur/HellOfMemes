@@ -5,7 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private Vector2 moveDirection;
-    private float moveSpeed;
+    [SerializeField] private float moveSpeed;
 
     public int damages;
 
@@ -16,7 +16,6 @@ public class Bullet : MonoBehaviour
 
     private void Start()
     {
-        moveSpeed = 5f;
         damages = 1;
     }
 
@@ -40,15 +39,4 @@ public class Bullet : MonoBehaviour
         CancelInvoke();
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision != null)
-        {
-            if (collision.gameObject.tag == "Player")
-            {
-                collision.gameObject.GetComponent<LifeManager>().TakeDamages(damages);
-                gameObject.SetActive(false);                
-            }
-        }
-    }
 }

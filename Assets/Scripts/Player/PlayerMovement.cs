@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] float speed;
 
-    public Transform firePoints;
+    PlayerShoot playerShoot;
 
     private void Awake()
     {
@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        playerShoot = GetComponent<PlayerShoot>();
+
         rb.velocity = movementInput * speed;
     }
 
@@ -32,7 +34,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnFire(InputValue inputValue)
     {
         fireDirection = inputValue.Get<Vector2>();
-        Debug.Log(fireDirection);
-        //firePoints.rotation = 
+
+        playerShoot.Shoot();
     }
 }

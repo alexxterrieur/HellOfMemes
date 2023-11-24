@@ -23,7 +23,7 @@ public class Patern2 : MonoBehaviour
             Vector3 bulletMoveVector = new Vector3(bulletDirX, bulletDirY, 0f);  //NEW VECTOR
             Vector2 bulletDir = (bulletMoveVector - transform.position).normalized;
 
-            GameObject bullet = BulletPool.bulletPoolInstance.GetBullet();
+            GameObject bullet = BulletPool.bulletPoolInstance.GetEnnemiesBullet();
             bullet.transform.position = transform.position;
             bullet.transform.rotation = transform.rotation;
             bullet.SetActive(true);

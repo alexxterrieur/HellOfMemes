@@ -5,43 +5,72 @@ using UnityEngine;
 public class BulletPool : MonoBehaviour
 {
     public static BulletPool bulletPoolInstance;
-
-    [SerializeField] GameObject pooledBullet;
-    private bool notEnoughBullets = true;
-    private List<GameObject> bullets;
     [SerializeField] Transform bulletsParent;
+
+    [SerializeField] GameObject enemiesBullet;
+    private List<GameObject> enemiesBullets;
+    private bool notEnoughEnemiesBullets = true;
+
+    [SerializeField] GameObject playerBullet;
+    private List<GameObject> playerBullets;
+    private bool notEnoughPlayerBullets = true;
 
     private void Awake()
     {
         bulletPoolInstance = this;
     }
-
+    
     private void Start()
     {
-        bullets = new List<GameObject>();
+        enemiesBullets = new List<GameObject>();
+        playerBullets = new List<GameObject>();
     }
 
-    public GameObject GetBullet()
+    public GameObject GetEnnemiesBullet()
     {
-        if(bullets.Count > 0)
+        if(enemiesBullets.Count > 0)
         {
-            for(int i = 0; i < bullets.Count; i++)
+            for(int i = 0; i < enemiesBullets.Count; i++)
             {
-                if (!bullets[i].activeInHierarchy)
+                if (!enemiesBullets[i].activeInHierarchy)
                 {
-                    return bullets[i];
+                    return enemiesBullets[i];
                 }
             }
         }
-        if(notEnoughBullets)
+        if(notEnoughEnemiesBullets)
         {
-            GameObject newBullet = Instantiate(pooledBullet);
+            GameObject newBullet = Instantiate(enemiesBullet);
             newBullet.transform.parent = bulletsParent;
             newBullet.SetActive(false);
-            bullets.Add(newBullet);
+            enemiesBullets.Add(newBullet);
             return newBullet;
         }
 
         return null;        
+    }
+
+    public GameObject GetPlayerBullet()
+    {
+        if(playerBullets.Count > 0)
+        {
+            for(int i = 0; i < playerBullets.Count; i++)
+            {
+                if (!playerBullets[i].activeInHierarchy)
+                {
+                    return playerBullets[i];
+                }
+            }
+        }
+        if(notEnoughPlayerBullets)
+        {
+            GameObject newBullet = Instantiate(playerBullet);
+            newBullet.transform.parent = bulletsParent;
+            newBullet.SetActive(false);
+            playerBullets.Add(newBullet);
+            return newBullet;
+        }
+
+        return null;
     }
 }
