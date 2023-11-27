@@ -18,6 +18,7 @@ public class ScoreManager : MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1f;
         playerLifeManager = GameObject.Find("Player").GetComponent<LifeManager>();
     }
 
