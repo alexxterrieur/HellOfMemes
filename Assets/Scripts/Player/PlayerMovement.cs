@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float speed;
 
     PlayerShoot playerShoot;
+    [SerializeField] private GameObject pausePanel;
 
     private void Awake()
     {
@@ -34,5 +35,11 @@ public class PlayerMovement : MonoBehaviour
     {
         fireDirection = inputValue.Get<Vector2>();
         playerShoot.Shoot(fireDirection);
+    }
+
+    private void OnEchap(InputValue inputValue)
+    {
+        Time.timeScale = 0f;
+        pausePanel.SetActive(true);
     }
 }
