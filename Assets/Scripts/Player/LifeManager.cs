@@ -5,9 +5,16 @@ using UnityEngine;
 
 public class LifeManager : MonoBehaviour
 {
+    [SerializeField] GameObject gameOverPanel;
     public int life;
     public int score;
     public ScoreManager scoreManager;
+
+    private void Start()
+    {
+        scoreManager = GameObject.FindWithTag("ScoreManager").GetComponent<ScoreManager>();
+        
+    }
 
     public void TakeDamages(int damages)
     {
@@ -30,7 +37,10 @@ public class LifeManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("Player mort");
+                Time.timeScale = 0f;
+                gameOverPanel.SetActive(true);
+                GameOverManager gameOverManager = GameObject.Find("GameOverManager").GetComponent<GameOverManager>();
+                gameOverManager.DisplayScores();
             }
         }
     }
