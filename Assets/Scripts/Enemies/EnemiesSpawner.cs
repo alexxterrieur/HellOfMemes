@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class EnemiesSpawner : MonoBehaviour
 {
-    public List<GameObject> enemyPrefabs;
+    [SerializeField] private List<GameObject> enemyPrefabs;
     public Vector3 center;
     public Vector3 spawnSize;
 
     public float timeBetweenWaves = 15f;
     private float countDown = 2f;
-    private int waveNumber = 1;
-    public int enemiesNumber = 10; //enemies during the first wave
-    public float multWave = 1.2f; //multiplicateurs d'ennemis pour la vague suivante
+    //private int waveNumber = 1;
+    [SerializeField] private int enemiesNumber = 3; //enemies during the first wave
+    private float multWave = 1.2f; //multiplicateurs d'ennemis pour la vague suivante
+    [SerializeField] private int maxEnemies = 7;
 
     void Update()
     {
@@ -35,8 +36,13 @@ public class EnemiesSpawner : MonoBehaviour
             selectedEnemies.Add(enemyPrefab);
             SpawnEnemy(enemyPrefab);
         }
-        enemiesNumber = Mathf.RoundToInt(enemiesNumber * multWave); // augmenter le nombre d'ennemis pour la prochaine vague
-        waveNumber++;
+        enemiesNumber = Mathf.RoundToInt(enemiesNumber * multWave);
+        if(enemiesNumber > maxEnemies)
+        {
+            enemiesNumber = maxEnemies;
+        }
+
+        //waveNumber++;
     }
 
     void SpawnEnemy(GameObject enemyPrefab)

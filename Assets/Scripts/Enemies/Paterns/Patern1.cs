@@ -5,12 +5,13 @@ using UnityEngine;
 public class Patern1 : MonoBehaviour
 {
     [SerializeField] private int bulletAmount = 10;
-    [SerializeField] private float startAngle = 90f, endAngle = 270f;
+    [SerializeField] private float startAngle = 0f, endAngle = 360f;
 
     public float fireRate;
 
     private void Start()
     {
+        new WaitForSeconds(15f);
         InvokeRepeating("Fire", 0f, fireRate);
     }
 

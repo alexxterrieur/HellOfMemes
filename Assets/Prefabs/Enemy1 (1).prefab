@@ -162,7 +162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb517f4ffed9b7f4b8bda4baae2b8bf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletAmount: 8
+  bulletAmount: 4
   startAngle: 0
   endAngle: 90
   fireRate: 0.8
