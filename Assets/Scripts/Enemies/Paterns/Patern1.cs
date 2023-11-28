@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Patern1 : MonoBehaviour
 {
+    private Vector2 bulletDir;
     [SerializeField] private int bulletAmount = 10;
     [SerializeField] private float startAngle = 0f, endAngle = 360f;
 
@@ -26,7 +27,7 @@ public class Patern1 : MonoBehaviour
             float bulletDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f);
 
             Vector3 bulletMoveVector = new Vector3(bulletDirX, bulletDirY, 0f);
-            Vector2 bulletDir = (bulletMoveVector - transform.position).normalized;
+            bulletDir = (bulletMoveVector - transform.position).normalized;
 
             GameObject bullet = BulletPool.bulletPoolInstance.GetEnnemiesBullet();
             bullet.transform.position = transform.position;
