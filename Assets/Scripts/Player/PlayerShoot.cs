@@ -11,8 +11,6 @@ public class PlayerShoot : MonoBehaviour
 
         for (int i = 0; i < 3; i++)
         {
-            //Vector2 bulletDir = Quaternion.Euler(0, 0, angle) * fireDirection;
-
             float bulletDirX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f);
             float bulletDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f);
 

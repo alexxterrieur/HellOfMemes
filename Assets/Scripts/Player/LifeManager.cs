@@ -31,7 +31,7 @@ public class LifeManager : MonoBehaviour
             if(gameObject.name != "Player")
             {
                 scoreManager.playerScore += score;
-                enemiesSpawner.enemiesAlive.Remove(gameObject); //remove pas si cest un boss
+                enemiesSpawner.enemiesAlive.Remove(gameObject);
                 Destroy(gameObject); //Desac et pull les enemies
             }
             else

@@ -24,7 +24,7 @@ public class EnemiesSpawner : MonoBehaviour
         {
             if (countDown <= 0f)
             {
-                if(waveNumber % 5 != 0) // pas multiple de 5
+                if(waveNumber % 5 != 0) // spawn un boss tt les 5 vagues
                 {
                     SpawnWave();                    
                 }
