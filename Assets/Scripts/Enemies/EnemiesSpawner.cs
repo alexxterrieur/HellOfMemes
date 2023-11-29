@@ -5,25 +5,40 @@ using UnityEngine;
 public class EnemiesSpawner : MonoBehaviour
 {
     [SerializeField] private List<GameObject> enemyPrefabs;
+    [SerializeField] private List<GameObject> bossPrefabs;
     public Vector3 center;
     public Vector3 spawnSize;
 
-    public float timeBetweenWaves = 15f;
+    public float timeBetweenWaves = 10f;
     private float countDown = 2f;
-    //private int waveNumber = 1;
+    public int waveNumber = 1;
     [SerializeField] private int enemiesNumber = 3; //enemies during the first wave
     private float multWave = 1.2f; //multiplicateurs d'ennemis pour la vague suivante
     [SerializeField] private int maxEnemies = 7;
 
+    public List<GameObject> enemiesAlive;
+    [SerializeField] private VideoSwitch videoSwitch;
+
     void Update()
     {
-        if (countDown <= 0f)
+        if (enemiesAlive.Count == 0)
         {
-            SpawnWave();
-            countDown = timeBetweenWaves;
-        }
+            if (countDown <= 0f)
+            {
+                if(waveNumber % 5 != 0) // spawn un boss tt les 5 vagues
+                {
+                    SpawnWave();                    
+                }
+                else
+                {
+                    SpawnBossWave();
+                }
 
-        countDown -= Time.deltaTime;
+                countDown = timeBetweenWaves;
+            }
+
+            countDown -= Time.deltaTime;
+        } 
     }
 
     public void SpawnWave()
@@ -34,22 +49,47 @@ public class EnemiesSpawner : MonoBehaviour
             //random enemy prefab
             GameObject enemyPrefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
             selectedEnemies.Add(enemyPrefab);
-            SpawnEnemy(enemyPrefab);
+            SpawnEnemy(enemyPrefab);             
         }
         enemiesNumber = Mathf.RoundToInt(enemiesNumber * multWave);
+
+        //limiter le nombre max dennemis sur la map
         if(enemiesNumber > maxEnemies)
         {
             enemiesNumber = maxEnemies;
         }
 
-        //waveNumber++;
+        videoSwitch.SwitchBackground();
+        waveNumber++;
     }
 
     void SpawnEnemy(GameObject enemyPrefab)
     {
         GameObject enemy = Instantiate(enemyPrefab);
+        enemiesAlive.Add(enemy);
         enemy.transform.position = center + new Vector3(Random.Range(-spawnSize.x / 2, spawnSize.x / 2), Random.Range(-spawnSize.y / 2, spawnSize.y / 2), Random.Range(-spawnSize.z / 2, spawnSize.z / 2));
     }
+
+    public void SpawnBossWave()
+    {
+        List<GameObject> selectedBoss = new List<GameObject>();
+
+        //random enemy prefab
+        GameObject bossPrefab = bossPrefabs[Random.Range(0, bossPrefabs.Count)];
+        selectedBoss.Add(bossPrefab);
+        SpawnBoss(bossPrefab);
+
+        videoSwitch.SwitchBackground();
+        waveNumber++;
+    }
+
+    void SpawnBoss(GameObject bossPrefab)
+    {
+        GameObject boss = Instantiate(bossPrefab);
+        enemiesAlive.Add(boss);
+        boss.transform.position = Vector3.zero;
+    }
+
 
     private void OnDrawGizmos()
     {

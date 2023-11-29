@@ -7,13 +7,15 @@ public class BulletPool : MonoBehaviour
     public static BulletPool bulletPoolInstance;
     [SerializeField] Transform bulletsParent;
 
-    [SerializeField] GameObject enemiesBullet;
+    public List<GameObject> enemiesBulletPrefabs;
     private List<GameObject> enemiesBullets;
     private bool notEnoughEnemiesBullets = true;
 
     [SerializeField] GameObject playerBullet;
     private List<GameObject> playerBullets;
     private bool notEnoughPlayerBullets = true;
+
+
 
     private void Awake()
     {
@@ -40,11 +42,17 @@ public class BulletPool : MonoBehaviour
         }
         if(notEnoughEnemiesBullets)
         {
-            GameObject newBullet = Instantiate(enemiesBullet);
-            newBullet.transform.parent = bulletsParent;
-            newBullet.SetActive(false);
-            enemiesBullets.Add(newBullet);
-            return newBullet;
+            for(int i = 0; i < enemiesBulletPrefabs.Count; i++)
+            {
+                GameObject bulletPrefab = enemiesBulletPrefabs[Random.Range(0, enemiesBulletPrefabs.Count)];
+
+                GameObject newBullet = Instantiate(bulletPrefab);
+                newBullet.transform.parent = bulletsParent;
+                newBullet.SetActive(false);
+                enemiesBullets.Add(newBullet);
+                return newBullet;
+            }
+            
         }
 
         return null;        
