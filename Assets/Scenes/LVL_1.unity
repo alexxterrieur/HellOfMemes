@@ -133,8 +133,9 @@ GameObject:
   m_Component:
   - component: {fileID: 106621210}
   - component: {fileID: 106621209}
+  - component: {fileID: 106621211}
   m_Layer: 0
-  m_Name: rickroll
+  m_Name: BackgroundVideo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -148,7 +149,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106621208}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 2d57b0482232a27499435b4d854ca1e2, type: 3}
+  m_VideoClip: {fileID: 0}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 519420031}
@@ -161,12 +162,14 @@ VideoPlayer:
   m_DataSource: 0
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
-  m_TargetAudioSources: []
-  m_DirectAudioVolumes: []
-  m_Url: 
-  m_EnabledAudioTracks: 
-  m_DirectAudioMutes: 
-  m_ControlledAudioTrackCount: 0
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
+  m_Url: https://www.youtube.com/watch?v=9ZDTIhfgueg
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
   m_Looping: 1
@@ -188,6 +191,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &106621211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106621208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80c5039b67d5c8745b5c5741828be31f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgroundVideos:
+  - {fileID: 32900000, guid: 28c386798c3d13b47800405d3bd3d999, type: 3}
+  - {fileID: 32900000, guid: 2d57b0482232a27499435b4d854ca1e2, type: 3}
+  - {fileID: 32900000, guid: a6e1f01917e2b7043a63fdb0771cd33a, type: 3}
+  videoPlayer: {fileID: 0}
 --- !u!1 &192008669
 GameObject:
   m_ObjectHideFlags: 0
@@ -1330,6 +1350,8 @@ MonoBehaviour:
   - {fileID: 8355524561287234639, guid: 40e78261352d6fe4cb1bd1d02fbefceb, type: 3}
   - {fileID: 4212672643913561802, guid: 66c1679b578ac504981d9b08848f4bfc, type: 3}
   - {fileID: 6811497891347761149, guid: 405ac5f766a09744483e98deb67c91d5, type: 3}
+  - {fileID: 9021401266398349767, guid: 8307ef2832a576f4797ee23607ead195, type: 3}
+  - {fileID: 7319906551841851506, guid: e3eca4d08bbb2704cbc79b50a8c5356b, type: 3}
   playerBullet: {fileID: 8277847949595190122, guid: 401b77d172ade0f408ea8e4a9eeecc66, type: 3}
 --- !u!4 &716587821
 Transform:
@@ -4203,12 +4225,14 @@ VideoPlayer:
   m_DataSource: 0
   m_PlaybackSpeed: 1
   m_AudioOutputMode: 2
-  m_TargetAudioSources: []
-  m_DirectAudioVolumes: []
+  m_TargetAudioSources:
+  - {fileID: 0}
+  m_DirectAudioVolumes:
+  - 1
   m_Url: 
-  m_EnabledAudioTracks: 
-  m_DirectAudioMutes: 
-  m_ControlledAudioTrackCount: 0
+  m_EnabledAudioTracks: 01
+  m_DirectAudioMutes: 00
+  m_ControlledAudioTrackCount: 1
   m_PlayOnAwake: 1
   m_SkipOnDrop: 1
   m_Looping: 1
@@ -4397,8 +4421,10 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 5896502411003385953, guid: 5d537d3ee3565f740bb8efbe46689ea3, type: 3}
   - {fileID: 1787112221149981077, guid: 90a433eed8c599a41ba9a87acc715c29, type: 3}
+  - {fileID: 161839126897518223, guid: 045a8d3bed505a04b90c9fba3465d29a, type: 3}
   bossPrefabs:
   - {fileID: 556701787976404229, guid: 11186f3902efbc940b5b48973d00d184, type: 3}
+  - {fileID: 3603411794247570672, guid: 6b2745d598fa42143bd68cf79b986dba, type: 3}
   center: {x: 0, y: 2, z: 0}
   spawnSize: {x: 16, y: 6, z: 0}
   timeBetweenWaves: 9
@@ -4406,6 +4432,7 @@ MonoBehaviour:
   enemiesNumber: 3
   maxEnemies: 6
   enemiesAlive: []
+  videoSwitch: {fileID: 106621211}
 --- !u!4 &1824884815
 Transform:
   m_ObjectHideFlags: 0

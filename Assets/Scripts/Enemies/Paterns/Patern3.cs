@@ -4,10 +4,25 @@ using UnityEngine;
 
 public class Patern3 : MonoBehaviour
 {
-    [SerializeField] GameObject[] shapeToDraw;
+    public List<Transform> shapeToDraw;
+    public float fireRate;
 
-    private void Update()
+    private void Start()
     {
-        
+        InvokeRepeating("Fire", 0f, fireRate);
+    }
+
+    private void Fire()
+    {
+        foreach (Transform point in shapeToDraw)
+        {
+            GameObject bullet = BulletPool.bulletPoolInstance.GetEnnemiesBullet();
+
+            bullet.transform.position = point.position;
+            bullet.transform.rotation = point.rotation;
+
+            bullet.SetActive(true);
+            bullet.GetComponent<Bullet>().SetMoveDirection(Vector2.down);
+        }
     }
 }

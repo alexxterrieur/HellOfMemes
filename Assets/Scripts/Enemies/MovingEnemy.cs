@@ -1,43 +1,43 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MovingEnemy : MonoBehaviour
 {
-    public bool moveOnX;
-    public bool moveOnY;
+    private float initialX;
+    private float initialY;
 
-    private float initX, endX;
-    private float initY, endY;
+    public bool canMoveX = false;
+    public bool canMoveY = false;
 
-    Vector3 moveDirection;
+    public float moveDistance = 5f;
+    public float moveSpeed = 1f;
+
     void Start()
     {
-        initX = transform.position.x;
-        initY = transform.position.y;
-
-        endX = transform.position.x + 5;
-        endX = transform.position.y + 5;
-
-        moveDirection = new Vector3();
+        initialX = transform.position.x;
+        initialY = transform.position.y;
     }
 
     void Update()
     {
-        if(moveOnX)
+        if (canMoveX)
         {
-            if(transform.position.x < endX)
-            {
-                
-            }
-            else
-            {
-
-            }
+            MoveInX();
         }
-        else if(moveOnY)
+        else if (canMoveY)
         {
-
+            MoveInY();
         }
+    }
+
+    void MoveInX()
+    {
+        float newX = initialX + moveDistance * Mathf.Sin(Time.time * moveSpeed);
+        transform.position = new Vector2(newX, transform.position.y);
+    }
+
+    void MoveInY()
+    {
+        float newY = initialY + moveDistance * Mathf.Sin(Time.time * moveSpeed);
+        transform.position = new Vector2(transform.position.x, newY);
     }
 }

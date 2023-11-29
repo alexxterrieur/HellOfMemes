@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2542974497365015083}
   - component: {fileID: 6668613901147067413}
-  - component: {fileID: 8608599390377576972}
-  - component: {fileID: 6990227392865180076}
   - component: {fileID: 519407114168498342}
   - component: {fileID: 2552474954389744744}
+  - component: {fileID: 8608599390377576972}
+  - component: {fileID: 6030851589938315525}
+  - component: {fileID: 6283723685205282773}
   m_Layer: 0
   m_Name: Boss2
   m_TagString: Enemy
@@ -88,39 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &8608599390377576972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3603411794247570672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cf515bf79d83a54ea4518cc76ee79de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameOverPanel: {fileID: 0}
-  life: 3
-  score: 15
-  scoreManager: {fileID: 0}
-  enemiesSpawner: {fileID: 0}
---- !u!114 &6990227392865180076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3603411794247570672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb517f4ffed9b7f4b8bda4baae2b8bf4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletAmount: 8
-  startAngle: 0
-  endAngle: 360
-  fireRate: 0.8
 --- !u!50 &519407114168498342
 Rigidbody2D:
   serializedVersion: 4
@@ -168,3 +136,50 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 14, y: 10}
   m_EdgeRadius: 0
+--- !u!114 &8608599390377576972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3603411794247570672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf515bf79d83a54ea4518cc76ee79de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverPanel: {fileID: 0}
+  life: 200
+  score: 250
+  scoreManager: {fileID: 0}
+  enemiesSpawner: {fileID: 0}
+--- !u!114 &6030851589938315525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3603411794247570672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df983fc4dd9bc4849ac0aeb9f9e52a03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireRate: 0.4
+  branchNumber: 8
+--- !u!114 &6283723685205282773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3603411794247570672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e846b79a8ce182d47be07bafaeb85343, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canMoveX: 1
+  canMoveY: 0
+  moveDistance: 5
+  moveSpeed: 1.5
