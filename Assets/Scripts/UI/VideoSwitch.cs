@@ -11,11 +11,19 @@ public class VideoSwitch : MonoBehaviour
     void Start()
     {
         videoPlayer = GetComponent<VideoPlayer>();
+        SwitchBackground();
+
+        videoPlayer.loopPointReached += HandleVideoEnd;
     }
 
     public void SwitchBackground()
     {
         VideoClip videoToPlay = backgroundVideos[Random.Range(0, backgroundVideos.Count)];
         videoPlayer.clip = videoToPlay;
+    }
+
+    private void HandleVideoEnd(VideoPlayer vp)
+    {
+        SwitchBackground();
     }
 }
