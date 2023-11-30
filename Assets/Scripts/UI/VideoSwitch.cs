@@ -26,4 +26,14 @@ public class VideoSwitch : MonoBehaviour
     {
         SwitchBackground();
     }
+
+    public void StopVideo()
+    {
+        videoPlayer.playbackSpeed = 0f;
+    }
+
+    public void ResumeVideo()
+    {
+        videoPlayer.playbackSpeed = 1f;
+    }
 }

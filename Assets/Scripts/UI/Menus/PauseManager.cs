@@ -8,9 +8,16 @@ public class PauseManager : MonoBehaviour
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private GameObject controlsPanel;
     [SerializeField] private GameObject warningPanel;
+    VideoSwitch videoSwitch;
+
+    private void Start()
+    {
+        videoSwitch = GameObject.Find("BackgroundVideo").GetComponent<VideoSwitch>();
+    }
 
     public void Resume()
     {
+        videoSwitch.ResumeVideo();
         Time.timeScale = 1f;
         pausePanel.SetActive(false);
     }

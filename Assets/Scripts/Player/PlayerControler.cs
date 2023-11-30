@@ -14,11 +14,13 @@ public class PlayerControler : MonoBehaviour
 
     PlayerShoot playerShoot;
     [SerializeField] private GameObject pausePanel;
+    VideoSwitch videoSwitch;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         playerShoot = GetComponent<PlayerShoot>();
+        videoSwitch = GameObject.Find("BackgroundVideo").GetComponent<VideoSwitch>();
     }
 
     private void FixedUpdate()
@@ -40,6 +42,7 @@ public class PlayerControler : MonoBehaviour
     private void OnEchap(InputValue inputValue)
     {
         Time.timeScale = 0f;
+        videoSwitch.StopVideo();
         pausePanel.SetActive(true);
     }
 }
