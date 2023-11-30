@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerShoot : MonoBehaviour
 {
-    public void Shoot(Vector2 fireDirection)
+    public void Shoot()
     {
         float angleStep = (15 - (-15)) / 3;
         float angle = -10;
@@ -15,7 +15,8 @@ public class PlayerShoot : MonoBehaviour
             float bulletDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f);
 
             Vector3 bulletMoveVector = new Vector3(bulletDirX, bulletDirY, 0f);
-            Vector2 bulletDir = (bulletMoveVector - transform.position).normalized; GameObject bullet = BulletPool.bulletPoolInstance.GetPlayerBullet();
+            Vector2 bulletDir = (bulletMoveVector - transform.position).normalized;
+            GameObject bullet = BulletPool.bulletPoolInstance.GetPlayerBullet();
             bullet.transform.position = transform.position;
             bullet.transform.rotation = Quaternion.LookRotation(Vector3.forward, bulletDir);
             bullet.SetActive(true);

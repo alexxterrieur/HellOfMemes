@@ -105,6 +105,7 @@ MonoBehaviour:
   score: 17
   scoreManager: {fileID: 0}
   enemiesSpawner: {fileID: 0}
+  videoSwitch: {fileID: 0}
 --- !u!114 &8399015360815893722
 MonoBehaviour:
   m_ObjectHideFlags: 0

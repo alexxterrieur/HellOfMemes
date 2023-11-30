@@ -20,6 +20,11 @@ public class GameOverManager : MonoBehaviour
         timerText.text = "Timer: " + scoreManager.timerSting;
     }
 
+    public void Retry()
+    {
+        SceneManager.LoadScene("LVL_1");
+    }
+
     public void Menu()
     {
         SceneManager.LoadScene("MainMenu");

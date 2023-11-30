@@ -153,6 +153,7 @@ MonoBehaviour:
   score: 250
   scoreManager: {fileID: 0}
   enemiesSpawner: {fileID: 0}
+  videoSwitch: {fileID: 0}
 --- !u!114 &6774857137628814967
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,7 +169,7 @@ MonoBehaviour:
   bulletAmount: 8
   startAngle: 85
   endAngle: 275
-  fireRate: 0.7
+  fireRate: 0.8
 --- !u!114 &5993182410165766317
 MonoBehaviour:
   m_ObjectHideFlags: 0
