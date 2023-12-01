@@ -19,10 +19,14 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private Shield shieldScript;
 
     /// 
-    public float time = 15;
-    public float enableShieldTimer = 15f;
+    public float enableShieldTimer = 0;
+    public float shielTime = 0f;
     public bool canActiveShield;
+    [SerializeField] GameObject shieldEnableMeme;
+    private bool hasPlayCoroutine;
     ///
+
+    public AudioSourceManager audioSourceScript;
 
     private void Awake()
     {
@@ -40,12 +44,17 @@ public class PlayerControler : MonoBehaviour
     {
         canActiveShield = false;
 
-        if (time >= enableShieldTimer)
+        if (shielTime <= enableShieldTimer)
         {
             canActiveShield = true;
+            if(!hasPlayCoroutine)
+            {
+                StartCoroutine("GetThisManAShield");
+                hasPlayCoroutine = true;
+            }            
         }
 
-        time += Time.deltaTime;
+        shielTime -= Time.deltaTime;
     }
 
     private void OnMove(InputValue inputValue)
@@ -56,6 +65,7 @@ public class PlayerControler : MonoBehaviour
     private void OnFire(InputValue inputValue)
     {
         playerShoot.Shoot();
+        audioSourceScript.PlayerShotSfx();
     }
 
     private void OnEchap(InputValue inputValue)
@@ -70,7 +80,17 @@ public class PlayerControler : MonoBehaviour
         if(canActiveShield)
         {
             shield.SetActive(true);
-            time = 0;
+            shielTime = 15;
+            hasPlayCoroutine = false;
         }        
+    }
+
+
+    public IEnumerator GetThisManAShield()
+    {
+        shieldEnableMeme.SetActive(true);
+        audioSourceScript.GetShieldSfx();
+        yield return new WaitForSeconds(0.6f);
+        shieldEnableMeme.SetActive(false);        
     }
 }

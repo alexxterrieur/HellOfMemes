@@ -14,8 +14,7 @@ public class GameOverManager : MonoBehaviour
 
     public void DisplayScores()
     {
-        int waveCompleted = scoreManager.waveNumber - 1;
-        waveText.text = "Wave: " + waveCompleted;
+        waveText.text = "Wave: " + scoreManager.waveNumber;
         scoreText.text = "Score: " + scoreManager.playerScore;
         timerText.text = "Timer: " + scoreManager.timerSting;
     }

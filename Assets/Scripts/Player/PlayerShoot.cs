@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class PlayerShoot : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class PlayerShoot : MonoBehaviour
             Vector2 bulletDir = (bulletMoveVector - transform.position).normalized;
             GameObject bullet = BulletPool.bulletPoolInstance.GetPlayerBullet();
             bullet.transform.position = transform.position;
-            bullet.transform.rotation = Quaternion.LookRotation(Vector3.forward, bulletDir);
+            bullet.transform.rotation = transform.rotation;
             bullet.SetActive(true);
             bullet.GetComponent<Bullet>().SetMoveDirection(bulletDir);
 

@@ -10,7 +10,7 @@ public class Shield : MonoBehaviour
     }
 
     IEnumerator DisableShield()
-    {        
+    {
         yield return new WaitForSeconds(2f);
         gameObject.SetActive(false);
     }
