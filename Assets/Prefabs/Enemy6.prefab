@@ -438,9 +438,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverPanel: {fileID: 0}
   life: 8
+  healthBar: {fileID: 0}
   score: 30
   scoreManager: {fileID: 0}
   enemiesSpawner: {fileID: 0}
+  audioSourceScript: {fileID: 0}
   videoSwitch: {fileID: 0}
 --- !u!114 &7529477419465067978
 MonoBehaviour:
@@ -464,7 +466,7 @@ MonoBehaviour:
   - {fileID: 2750321302266819907}
   - {fileID: 1748630371895021286}
   - {fileID: 6695057450917114165}
-  fireRate: 1
+  fireRate: 1.3
 --- !u!1 &7575266986422564454
 GameObject:
   m_ObjectHideFlags: 0

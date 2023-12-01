@@ -32,16 +32,10 @@ public class Patern2 : MonoBehaviour
         }
 
         //passer de + a - pour changer le sens de rotation
-        if(gameObject.GetComponent<LifeManager>().life > 50)
-        {
-            angle += 100;
-        }
-        if(gameObject.GetComponent<LifeManager>().life <= 50)
-        {
-            angle -= 10;
-        }
+        angle += 10;
 
-        if(angle >= 360)
+
+        if (angle >= 360)
         {
             angle = 0;
         }

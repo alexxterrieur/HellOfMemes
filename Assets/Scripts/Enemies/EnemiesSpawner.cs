@@ -13,7 +13,7 @@ public class EnemiesSpawner : MonoBehaviour
     private float countDown = 2f;
     public int waveNumber = 1;
     [SerializeField] private int enemiesNumber = 3; //enemies during the first wave
-    private float multWave = 1.15f; //multiplicateurs d'ennemis pour la vague suivante
+    public float multWave = 1.2f; //multiplicateurs d'ennemis pour la vague suivante
     [SerializeField] private int maxEnemies = 7;
 
     public List<GameObject> enemiesAlive;

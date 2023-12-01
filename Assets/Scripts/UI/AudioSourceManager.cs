@@ -4,30 +4,30 @@ using UnityEngine;
 
 public class AudioSourceManager : MonoBehaviour
 {
-    public AudioSource audioSource;
-    [SerializeField] private AudioClip PlayerShot, playerHit, playerDeath, GetShield;
+    public AudioSource audioSourceShot, audioSourceHit, audioSourceDeath, audioSourceGetShield, audioSourceShield;
 
     public void PlayerShotSfx()
     {
-        audioSource.clip = PlayerShot;
-        audioSource.Play();
+        audioSourceShot.Play();
     }
 
     public void PlayerHitSfx()
     {
-        audioSource.clip = playerHit;
-        audioSource.Play();
+        audioSourceHit.Play();
     }
 
     public void PlayerDeathSound()
     {
-        audioSource.clip = playerDeath;
-        audioSource.Play();
+        audioSourceDeath.Play();
     }
 
     public void GetShieldSfx()
     {
-        audioSource.clip = GetShield;
-        audioSource.Play();
+        audioSourceGetShield.Play();
+    }
+
+    public void ShieldSound()
+    {
+        audioSourceShield.Play();
     }
 }

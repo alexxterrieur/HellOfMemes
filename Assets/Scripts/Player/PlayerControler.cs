@@ -80,6 +80,7 @@ public class PlayerControler : MonoBehaviour
         if(canActiveShield)
         {
             shield.SetActive(true);
+            audioSourceScript.ShieldSound();
             shielTime = 15;
             hasPlayCoroutine = false;
         }        
