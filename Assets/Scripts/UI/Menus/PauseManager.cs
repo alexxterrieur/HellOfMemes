@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
-    [SerializeField] private GameObject pausePanel;
-    [SerializeField] private GameObject controlsPanel;
-    [SerializeField] private GameObject warningPanel;
+    public GameObject mainPausePanel;
+    public GameObject pausePanel;
+    public GameObject controlsPanel;
+    public GameObject warningPanel;
     VideoSwitch videoSwitch;
 
     private void Start()
@@ -25,20 +27,24 @@ public class PauseManager : MonoBehaviour
     public void Controls()
     {
         controlsPanel.SetActive(true);
+        mainPausePanel.SetActive(false);
     }
 
     public void CloseControls()
     {
+        mainPausePanel.SetActive(true);
         controlsPanel.SetActive(false);
     }
 
     public void MenuButtonOnPausePanel()
     {
         warningPanel.SetActive(true);
+        mainPausePanel.SetActive(false);
     }
 
     public void CancelBackToMenu()
     {
+        mainPausePanel.SetActive(true);
         warningPanel.SetActive(false);
     }
 

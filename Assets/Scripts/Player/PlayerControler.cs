@@ -13,6 +13,7 @@ public class PlayerControler : MonoBehaviour
 
     PlayerShoot playerShoot;
     [SerializeField] private GameObject pausePanel;
+    [SerializeField] private PauseManager pauseManager;
     VideoSwitch videoSwitch;
 
     [SerializeField] private GameObject shield;
@@ -30,6 +31,8 @@ public class PlayerControler : MonoBehaviour
 
     private void Awake()
     {
+        Cursor.visible = false;
+
         rb = GetComponent<Rigidbody2D>();
         playerShoot = GetComponent<PlayerShoot>();
         videoSwitch = GameObject.Find("BackgroundVideo").GetComponent<VideoSwitch>();
@@ -57,25 +60,48 @@ public class PlayerControler : MonoBehaviour
         shielTime -= Time.deltaTime;
     }
 
-    private void OnMove(InputValue inputValue)
+    public void OnMove(InputAction.CallbackContext ctx)
     {
-        movementInput = inputValue.Get<Vector2>();
+        movementInput = ctx.ReadValue<Vector2>();
     }
 
-    private void OnFire(InputValue inputValue)
+    public void OnFire(InputAction.CallbackContext ctx)
     {
         playerShoot.Shoot();
         audioSourceScript.PlayerShotSfx();
     }
 
-    private void OnEchap(InputValue inputValue)
+    public void OnEchap(InputAction.CallbackContext ctx)
     {
         Time.timeScale = 0f;
         videoSwitch.StopVideo();
-        pausePanel.SetActive(true);
+
+        //desac Menu avec echap
+        if(ctx.canceled && !pausePanel.activeInHierarchy)
+        {
+            pausePanel.SetActive(true);
+        }
+        else
+        {
+            if(ctx.canceled && !pauseManager.controlsPanel.activeInHierarchy && !pauseManager.warningPanel.activeInHierarchy)
+            {
+                pausePanel.SetActive(false);
+                Time.timeScale = 1f;
+                videoSwitch.ResumeVideo();
+            }
+            else if(ctx.canceled && pauseManager.controlsPanel.activeInHierarchy)
+            {
+                pauseManager.controlsPanel.SetActive(false);
+            }   
+            else if(ctx.canceled && pauseManager.warningPanel.activeInHierarchy)
+            {
+                pauseManager.warningPanel.SetActive(false);
+            }
+            
+        }        
     }
 
-    private void OnSpace(InputValue inputValue)
+    public void OnSpace(InputAction.CallbackContext ctx)
     {
         if(canActiveShield)
         {
