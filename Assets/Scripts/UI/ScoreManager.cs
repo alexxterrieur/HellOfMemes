@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
+    EnemiesSpawner enemiesSpawner;
+    [SerializeField] TMP_Text waveText;
+    public int waveNumber;
+
     LifeManager playerLifeManager;
     [SerializeField] TMP_Text lifeText;
 
@@ -20,10 +24,13 @@ public class ScoreManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         playerLifeManager = GameObject.Find("Player").GetComponent<LifeManager>();
+        enemiesSpawner = GameObject.Find("EnemiesSpawner").GetComponent<EnemiesSpawner>();
     }
 
     private void Update()
     {
+        waveNumber = enemiesSpawner.waveNumber - 1;
+        waveText.text = "Wave: " + waveNumber;
         lifeText.text = "Life: " + playerLifeManager.life;
         scoreText.text = "Score: " + playerScore;
         DisplayTime(timer);

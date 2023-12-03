@@ -9,15 +9,14 @@ public class EnemiesSpawner : MonoBehaviour
     public Vector3 center;
     public Vector3 spawnSize;
 
-    public float timeBetweenWaves = 10f;
+    public float timeBetweenWaves = 5f;
     private float countDown = 2f;
     public int waveNumber = 1;
     [SerializeField] private int enemiesNumber = 3; //enemies during the first wave
-    private float multWave = 1.2f; //multiplicateurs d'ennemis pour la vague suivante
+    public float multWave = 1.2f; //multiplicateurs d'ennemis pour la vague suivante
     [SerializeField] private int maxEnemies = 7;
 
     public List<GameObject> enemiesAlive;
-    [SerializeField] private VideoSwitch videoSwitch;
 
     void Update()
     {
@@ -59,7 +58,6 @@ public class EnemiesSpawner : MonoBehaviour
             enemiesNumber = maxEnemies;
         }
 
-        videoSwitch.SwitchBackground();
         waveNumber++;
     }
 
@@ -79,7 +77,6 @@ public class EnemiesSpawner : MonoBehaviour
         selectedBoss.Add(bossPrefab);
         SpawnBoss(bossPrefab);
 
-        videoSwitch.SwitchBackground();
         waveNumber++;
     }
 

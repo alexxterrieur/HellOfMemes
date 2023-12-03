@@ -9,7 +9,7 @@ public class Patern3 : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating("Fire", 0f, fireRate);
+        InvokeRepeating("Fire", 1f, fireRate);
     }
 
     private void Fire()

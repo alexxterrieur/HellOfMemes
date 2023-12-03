@@ -8,6 +8,8 @@ TagManager:
   - EnemiesBullet
   - PlayerBullet
   - ScoreManager
+  - Boss
+  - HealthBar
   layers:
   - Default
   - TransparentFX
