@@ -69,14 +69,20 @@ public class PlayerControler : MonoBehaviour
 
     public void OnFire1(InputAction.CallbackContext ctx)
     {
-        playerShoot.Shoot1();
-        audioSourceScript.PlayerShotSfx();
+        if (ctx.performed && !pausePanel.activeInHierarchy)
+        {
+            playerShoot.Shoot1();
+            audioSourceScript.PlayerShotSfx();
+        }
     }
 
     public void OnFire2(InputAction.CallbackContext ctx)
     {
-        playerShoot.Shoot2();
-        audioSourceScript.PlayerShotSfx();
+        if(ctx.performed && !pausePanel.activeInHierarchy)
+        {
+            playerShoot.Shoot2();
+            audioSourceScript.PlayerShotSfx();
+        }
     }
 
     public void OnEchap(InputAction.CallbackContext ctx)
