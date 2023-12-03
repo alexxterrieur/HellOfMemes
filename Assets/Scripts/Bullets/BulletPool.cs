@@ -15,8 +15,6 @@ public class BulletPool : MonoBehaviour
     private List<GameObject> playerBullets;
     private bool notEnoughPlayerBullets = true;
 
-
-
     private void Awake()
     {
         bulletPoolInstance = this;
@@ -81,4 +79,5 @@ public class BulletPool : MonoBehaviour
 
         return null;
     }
+
 }

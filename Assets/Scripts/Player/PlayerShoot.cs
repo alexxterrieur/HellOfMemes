@@ -5,10 +5,12 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class PlayerShoot : MonoBehaviour
 {
-    public void Shoot()
+    public List<GameObject> shapeToDraw;
+
+    public void Shoot1()
     {
-        float angleStep = (15 - (-15)) / 3;
-        float angle = -10;
+        float angleStep = (25 - (-45)) / 3;
+        float angle = -25;
 
         for (int i = 0; i < 3; i++)
         {
@@ -26,4 +28,19 @@ public class PlayerShoot : MonoBehaviour
             angle += angleStep;
         }
     }
+
+    public void Shoot2()
+    {
+        foreach(GameObject point in shapeToDraw)
+        {
+            GameObject bullet = BulletPool.bulletPoolInstance.GetPlayerBullet();
+
+            bullet.transform.position = point.transform.position;
+            bullet.transform.rotation = point.transform.rotation;
+
+            bullet.SetActive(true);
+            bullet.GetComponent<Bullet>().SetMoveDirection(Vector2.up);
+        }
+    }
+
 }

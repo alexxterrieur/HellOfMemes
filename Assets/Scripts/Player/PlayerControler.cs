@@ -12,6 +12,7 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] float speed;
 
     PlayerShoot playerShoot;
+    public GameObject mainPausePanel;
     [SerializeField] private GameObject pausePanel;
     [SerializeField] private PauseManager pauseManager;
     VideoSwitch videoSwitch;
@@ -20,7 +21,6 @@ public class PlayerControler : MonoBehaviour
     [SerializeField] private Shield shieldScript;
 
     /// 
-    public float enableShieldTimer = 0;
     public float shielTime = 0f;
     public bool canActiveShield;
     [SerializeField] GameObject shieldEnableMeme;
@@ -45,10 +45,12 @@ public class PlayerControler : MonoBehaviour
 
     private void Update()
     {
+        //shield
         canActiveShield = false;
 
-        if (shielTime <= enableShieldTimer)
+        if (shielTime <= 0)
         {
+            shielTime = 0;
             canActiveShield = true;
             if(!hasPlayCoroutine)
             {
@@ -57,7 +59,7 @@ public class PlayerControler : MonoBehaviour
             }            
         }
 
-        shielTime -= Time.deltaTime;
+        shielTime -= Time.deltaTime;  
     }
 
     public void OnMove(InputAction.CallbackContext ctx)
@@ -65,9 +67,15 @@ public class PlayerControler : MonoBehaviour
         movementInput = ctx.ReadValue<Vector2>();
     }
 
-    public void OnFire(InputAction.CallbackContext ctx)
+    public void OnFire1(InputAction.CallbackContext ctx)
     {
-        playerShoot.Shoot();
+        playerShoot.Shoot1();
+        audioSourceScript.PlayerShotSfx();
+    }
+
+    public void OnFire2(InputAction.CallbackContext ctx)
+    {
+        playerShoot.Shoot2();
         audioSourceScript.PlayerShotSfx();
     }
 
@@ -76,25 +84,30 @@ public class PlayerControler : MonoBehaviour
         Time.timeScale = 0f;
         videoSwitch.StopVideo();
 
-        //desac Menu avec echap
+        //activer menu pause
         if(ctx.canceled && !pausePanel.activeInHierarchy)
         {
             pausePanel.SetActive(true);
         }
         else
         {
+            //desac menu pause
             if(ctx.canceled && !pauseManager.controlsPanel.activeInHierarchy && !pauseManager.warningPanel.activeInHierarchy)
             {
                 pausePanel.SetActive(false);
                 Time.timeScale = 1f;
                 videoSwitch.ResumeVideo();
             }
+            //desac controls panel
             else if(ctx.canceled && pauseManager.controlsPanel.activeInHierarchy)
-            {
+            {       
+                mainPausePanel.SetActive(true);
                 pauseManager.controlsPanel.SetActive(false);
             }   
+            //desac warning
             else if(ctx.canceled && pauseManager.warningPanel.activeInHierarchy)
             {
+                mainPausePanel.SetActive(true);
                 pauseManager.warningPanel.SetActive(false);
             }
             
@@ -103,7 +116,7 @@ public class PlayerControler : MonoBehaviour
 
     public void OnSpace(InputAction.CallbackContext ctx)
     {
-        if(canActiveShield)
+        if(ctx.performed && canActiveShield && !pausePanel.activeInHierarchy)
         {
             shield.SetActive(true);
             audioSourceScript.ShieldSound();
@@ -120,4 +133,5 @@ public class PlayerControler : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
         shieldEnableMeme.SetActive(false);        
     }
+
 }
