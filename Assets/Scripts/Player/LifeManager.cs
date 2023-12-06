@@ -88,7 +88,7 @@ public class LifeManager : MonoBehaviour
                 }
                 videoSwitch.StopVideo();
                 audioSourceScript.audioSourceHit.Stop();
-                audioSourceScript.PlayerDeathSound();
+                //audioSourceScript.PlayerDeathSound();
                 gameOverPanel.SetActive(true);
                 GameOverManager gameOverManager = GameObject.Find("GameOverManager").GetComponent<GameOverManager>();
                 gameOverManager.DisplayScores();
