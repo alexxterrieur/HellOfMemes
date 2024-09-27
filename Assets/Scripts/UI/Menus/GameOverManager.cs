@@ -26,10 +26,6 @@ public class GameOverManager : MonoBehaviour
 
     public void UpdateBestScore()
     {
-        //int bestWave = saveManager.GetBestScore("WaveNumber");
-        //int bestScore = saveManager.GetBestScore("Score");
-        //float bestTime = saveManager.GetBestScore("Time");
-
         int bestWave = PlayerPrefs.GetInt("BestWaveNumber");
         int bestScore = PlayerPrefs.GetInt("BestScore");
         float bestTime = PlayerPrefs.GetFloat("BestTime");
